@@ -15,9 +15,8 @@ app.use(
 	})
 );
 
-Main route
+// Main route
 app.get('/', (req, res) => res.send('BOAT!'));
-
 
 app.get('/signup', (req, res) => {
 	res.render('/signup');
