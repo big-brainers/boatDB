@@ -1,0 +1,24 @@
+[
+    {
+        "email": "bigbrainersfour@gmail.com",
+        "password": "123456!",
+        "tasks": [
+            {
+                "title": "BOAT",
+                "details": "We the BOAT gang"
+            }
+        ]
+    },
+    {
+        "email": "test1@gmail.com",
+        "password": "1234567!"
+    },
+    {
+        "email": "test2@gmail.com",
+        "password": "1234568!"
+    },
+    {
+        "email": "test3@gmail.com",
+        "password": "1234569!"
+    }
+]
