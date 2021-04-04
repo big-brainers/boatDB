@@ -4,7 +4,7 @@ const User = require('../db/models/User');
 const router = express.Router();
 
 //Get all logs
-router.get('/logs', (req, res, next) => {
+router.get('/', (req, res, next) => {
 	Log.find({})
 		.then((entry) => res.json(entry))
 		.catch(next)
