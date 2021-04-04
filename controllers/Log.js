@@ -10,27 +10,20 @@ router.get('/', (req, res, next) => {
 		.catch(next)
 })
 
-//GET all user logs
-router.get('/Users/:userId/logs', (req, res, next) => {
-	User.findById({ _id: req.params.userId })
-		.then((user) => res.json(user.entry))
-		.catch(next)
-})
-
 //GET a log by id
-router.get('/logs/:id', (req, res, next) => {
-	Task.findById({ _id: req.params.id })
+router.get('/:id', (req, res, next) => {
+	Log.findById({ _id: req.params.id })
 		.then((entry) => res.json(entry))
 		.catch(next)
 })
 
 //POST create a log
-router.post('/users/:userId/logs/create', (req, res, next) => {
+router.post('/:userId/create', (req, res, next) => {
 	Log.create(req.body)
-		.then((newEntrie) => {
+		.then((newLog) => {
 			User.findOneAndUpdate(
 				req.params.userId,
-				{ $push: {logs: newEntrie} },
+				{ $push: {entries: newLog} },
 				{ new: true }
 			)
 			.then(add => res.json(add))
@@ -39,18 +32,18 @@ router.post('/users/:userId/logs/create', (req, res, next) => {
 })
 
 //PUT updates a log
-router.put('/Users/:userId/logs/:id', (req, res, next) => {
-	Task.findByIdAndUpdate(
+router.put('/:userId/:id', (req, res, next) => {
+	Log.findByIdAndUpdate(
 			{ _id: req.params.id }, 
 			req.body, 
-			{ new: true }
+			{ new: false }
 		)
 		.then((entry) => res.json(entry))
 		.catch(next)
 })
 
 //DELETE a log
-router.delete('/logs/:id', (req, res, next) => {
+router.delete('/:userId/:id', (req, res, next) => {
 	Log.findByIdAndDelete(req.params.id)
 		.then((delEntry) => res.json(delEntry))
 		.catch(next)
