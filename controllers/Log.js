@@ -32,15 +32,29 @@ router.post('/:userId/create', (req, res, next) => {
 })
 
 //PUT updates a log
-router.put('/:userId/:id', (req, res, next) => {
-	Log.findByIdAndUpdate(
-			{ _id: req.params.id }, 
-			req.body, 
-			{ new: false }
-		)
-		.then((entry) => res.json(entry))
-		.catch(next)
-})
+// router.put('/:userId/:id', (req, res, next) => {
+// 	Log.findByIdAndUpdate(
+// 			{ _id: req.params.id }, 
+// 			req.body, 
+// 			{ new: false }
+// 		)
+// 		.then((entry) => res.json(entry))
+// 		.catch(next)
+// })
+// router.patch('/:id', (req, res, next) => {
+// 	const id = req.params.id;
+// 	const entrieData = req.body;
+// 	User.findOne({
+// 	  'entries._id': id,
+// 	})
+// 	  .then((user) => {
+// 		const entry = user.entries.id(id);
+// 		entry.set(entrieData);
+// 		return user.save();
+// 	  })
+// 	  .then(() => res.sendStatus(204))
+// 	  .catch(next);
+//   })
 
 //DELETE a log
 router.delete('/:userId/:id', (req, res, next) => {
