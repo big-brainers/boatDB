@@ -1,12 +1,12 @@
 const mongoose = require('mongoose')
 
-const Tasks = require('../models/tasksModel')
-const Users = require('../models/usersModel')
+const Logs = require('../db/models/Log')
+const Users = require('../db/models/User')
 
 const TestData = require('./test_user.json')
 const Data = require('./seeds.json')
 
-Tasks.deleteMany({})
+Logs.deleteMany({})
 	.then(() => Tasks.insertMany(Data))
 	.catch(console.error)
 	.finally(() => process.exit)
