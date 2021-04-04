@@ -1,43 +1,59 @@
 const express = require('express');
 const Log = require('../db/models/Log');
+const User = require('../db/models/User');
 const router = express.Router();
 
-router.get('/', (req, res) => {
-	Log.find({}).then((entry) => {
-		res.json(entry);
-	});
-});
+//Get all logs
+router.get('/logs', (req, res, next) => {
+	Log.find({})
+		.then((entry) => res.json(entry))
+		.catch(next)
+})
 
-router.get('/:id', (req, res) => {
-	Log.findById({ _id: req.params.id }).then((entry) => {
-		res.json(entry);
-	});
-});
+//GET all user logs
+router.get('/Users/:userId/logs', (req, res, next) => {
+	User.findById({ _id: req.params.userId })
+		.then((user) => res.json(user.entry))
+		.catch(next)
+})
 
-// router.get('/logs/:title', (req, res) => {
-// 	Log.findOne({ title: req.params.title }).then((entry) => {
-// 		res.json(entry);
-// 	});
-// });
+//GET a log by id
+router.get('/logs/:id', (req, res, next) => {
+	Task.findById({ _id: req.params.id })
+		.then((entry) => res.json(entry))
+		.catch(next)
+})
 
-router.post('/', (req, res) => {
-	Log.create(req.body).then((entry) => {
-		res.json(entry);
-	});
-});
+//POST create a log
+router.post('/users/:userId/logs/create', (req, res, next) => {
+	Log.create(req.body)
+		.then((newEntrie) => {
+			User.findOneAndUpdate(
+				req.params.userId,
+				{ $push: {logs: newEntrie} },
+				{ new: true }
+			)
+			.then(add => res.json(add))
+		})
+		.catch(next)
+})
 
-router.put('/:id', (req, res) => {
-	Log.findByIdAndUpdate({ _id: req.params.id }, req.body, {
-		new: true,
-	}).then((entry) => {
-		res.json(entry);
-	});
-});
+//PUT updates a log
+router.put('/Users/:userId/logs/:id', (req, res, next) => {
+	Task.findByIdAndUpdate(
+			{ _id: req.params.id }, 
+			req.body, 
+			{ new: true }
+		)
+		.then((entry) => res.json(entry))
+		.catch(next)
+})
 
-router.delete('/:id', (req, res) => {
-	Log.findByIdAndDelete({ _id: req.params.id }).then((delEntry) => {
-		res.json(delEntry);
-	});
-});
+//DELETE a log
+router.delete('/logs/:id', (req, res, next) => {
+	Log.findByIdAndDelete(req.params.id)
+		.then((delEntry) => res.json(delEntry))
+		.catch(next)
+})
 
 module.exports = router;

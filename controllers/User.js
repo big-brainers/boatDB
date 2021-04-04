@@ -6,16 +6,14 @@ const User = require('../db/models/User');
 const auth = require('../middleware/auth');
 const router = express.Router();
 
-// GET all users
-
+//GET all users
 router.get('/', (req, res, next) => {
 	User.find({})
 		.then((users) => res.json(users))
 		.catch(next);
 });
 
-//GET user id
-
+//GET a user by id
 router.get('/:id', (req, res, next) => {
 	User.findById({
 		_id: req.params.id,
@@ -31,16 +29,14 @@ router.put('/:id', (req, res, next) => {
 		.catch(next);
 });
 
-//DELETE user
-
+//DELETE a user
 router.delete('/:id', (req, res, next) => {
 	User.findByIdAndDelete(req.params.id)
 		.then((user) => res.json(user))
 		.catch(next);
 });
 
-//Signup new user
-
+//Signup a new user
 router.post(
 	'/signup',
 	[
@@ -99,8 +95,7 @@ router.post(
 	}
 );
 
-//Login user
-
+//Login a new user
 router.post(
 	'/login',
 	[
@@ -160,7 +155,6 @@ router.post(
 );
 
 //Get a user by
-
 router.get('/me', auth, async (req, res) => {
 	try {
 		const user = await User.findById(req.user.id);
