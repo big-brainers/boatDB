@@ -1,17 +1,17 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
-const Logs = require('../db/models/Log')
-const Users = require('../db/models/User')
+const Logs = require('../db/models/Log');
+const Users = require('../db/models/User');
 
-const TestData = require('./test_user.json')
-const Data = require('./seeds.json')
+const TestData = require('./test_user.json');
+const Data = require('./seeds.json');
 
 Logs.deleteMany({})
-	.then(() => Tasks.insertMany(Data))
+	.then(() => Logs.insertMany(Data))
 	.catch(console.error)
-	.finally(() => process.exit)
+	.finally(() => process.exit);
 
 Users.deleteMany({})
 	.then(() => Users.insertMany(TestData))
 	.catch(console.error)
-	.finally(() => process.exit)
+	.finally(() => process.exit);
