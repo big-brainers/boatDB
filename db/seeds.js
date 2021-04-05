@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require('./connection');
 
 const Logs = require('../db/models/Log');
 const Users = require('../db/models/User');
