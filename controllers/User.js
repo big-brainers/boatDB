@@ -97,7 +97,8 @@ router.post(
 
 //Login a new user
 router.post(
-	'/login',
+	// '/login',
+	'/signin',
 	[
 		check('email', 'Please enter a valid email').isEmail(),
 		check('password', 'Please enter a valid password').isLength({
