@@ -2,7 +2,10 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 const URI = process.env.URI;
 
-const mongoURI = `${URI}/boat-backend`;
+const mongoURI =
+	process.env.NODE_ENV === 'production'
+		? `${URI}/boat-backend`
+		: 'mongodb://localhost/boat-backend';
 
 // const startMongoServer = async () => {
 // 	try {
