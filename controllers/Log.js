@@ -23,7 +23,7 @@ router.post('/', (req, res) => {
 });
 
 //DELETE a log
-router.delete('/:userId/:id', (req, res, next) => {
+router.delete('/:id', (req, res, next) => {
 	Log.findByIdAndDelete(req.params.id)
 		.then((delEntry) => res.json(delEntry))
 		.catch(next);
