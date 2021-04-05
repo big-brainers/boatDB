@@ -10,5 +10,24 @@
     "nodemon": "^2.0.7",
     "passport": "^0.4.1",
     "passport-google-oauth20": "^2.0.0"
-  }
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "boatDB",
+  "description": "<img src=\"./images/HomePage.png\" alt=\"Welcome Page\">",
+  "version": "1.0.0",
+  "main": "server.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/big-brainers/boatDB.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/big-brainers/boatDB/issues"
+  },
+  "homepage": "https://github.com/big-brainers/boatDB#readme"
 }
